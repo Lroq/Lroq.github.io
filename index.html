@@ -1,146 +1,975 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mon stage chez EarthDaily Agro - Louis Roques</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<body>
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
 
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation */
+      .navbar {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .navbar a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        text-align: center;
+        padding: 4rem 0;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .hero .company-name {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stage-info {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .info-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .info-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .info-card:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      .info-card i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      /* Main Content */
+      .main-content {
+        background: white;
+        margin: 2rem auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: visible;
+        max-width: 900px;
+        position: relative;
+      }
+
+      .content-section {
+        padding: 3rem;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .section:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .section:nth-child(3) {
+        animation-delay: 0.8s;
+      }
+      .section:nth-child(4) {
+        animation-delay: 1s;
+      }
+      .section:nth-child(5) {
+        animation-delay: 1.2s;
+      }
+      .section:nth-child(6) {
+        animation-delay: 1.4s;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section h2 i {
+        font-size: 1.5rem;
+        color: #667eea;
+      }
+
+      .section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 1rem;
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #667eea, #764ba2);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border-left: 4px solid #667eea;
+        transition: all 0.3s ease;
+      }
+
+      .timeline-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -2.5rem;
+        top: 1.5rem;
+        width: 12px;
+        height: 12px;
+        background: #667eea;
+        border-radius: 50%;
+        border: 3px solid white;
+      }
+
+      .timeline-item h3 {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-item .phase {
+        background: #667eea;
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      /* Skills Tags */
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+        position: relative;
+        margin-bottom: 4rem;
+      }
+
+      .skill-tag {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        user-select: none;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .skill-tag.active {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+      }
+
+      .skill-tag.devops {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      }
+      .skill-tag.cloud {
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      }
+      .skill-tag.database {
+        background: linear-gradient(135deg, #a55eea, #8b5cf6);
+      }
+
+      /* Tooltip */
+      .tooltip {
+        position: absolute;
+        background: white;
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e0e0e0;
+        max-width: 320px;
+        width: 320px;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+        top: 100%;
+        left: 0;
+        margin-top: 10px;
+      }
+
+      .tooltip.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .tooltip::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 20px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid white;
+      }
+
+      .tooltip h4 {
+        color: #2c3e50;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .tooltip h4 i {
+        color: #667eea;
+      }
+
+      .tooltip p {
+        color: #666;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
+      }
+
+      .tooltip .context {
+        background: #f8f9ff;
+        padding: 0.8rem;
+        border-radius: 8px;
+        border-left: 3px solid #667eea;
+      }
+
+      .tooltip .context strong {
+        color: #2c3e50;
+        font-size: 0.9rem;
+      }
+
+      .tooltip .context span {
+        color: #555;
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
+
+      .tooltip .close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.8rem;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #999;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .tooltip .close-btn:hover {
+        color: #667eea;
+      }
+
+      /* Achievement Cards */
+      .achievements {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .achievement-card {
+        background: white;
+        color: #2c3e50;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 3px solid #e0e0e0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .achievement-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .achievement-card:nth-child(1) {
+        border-color: #e74c3c;
+      }
+
+      .achievement-card:nth-child(1):hover {
+        background: #e74c3c;
+        color: white;
+      }
+
+      .achievement-card:nth-child(2) {
+        border-color: #3498db;
+      }
+
+      .achievement-card:nth-child(2):hover {
+        background: #3498db;
+        color: white;
+      }
+
+      .achievement-card:nth-child(3) {
+        border-color: #2ecc71;
+      }
+
+      .achievement-card:nth-child(3):hover {
+        background: #2ecc71;
+        color: white;
+      }
+
+      .achievement-card:nth-child(4) {
+        border-color: #f39c12;
+      }
+
+      .achievement-card:nth-child(4):hover {
+        background: #f39c12;
+        color: white;
+      }
+
+      .achievement-card i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .achievement-card:nth-child(1) i {
+        color: #e74c3c;
+      }
+
+      .achievement-card:nth-child(2) i {
+        color: #3498db;
+      }
+
+      .achievement-card:nth-child(3) i {
+        color: #2ecc71;
+      }
+
+      .achievement-card:nth-child(4) i {
+        color: #f39c12;
+      }
+
+      .achievement-card:hover i {
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .achievement-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+
+      .achievement-card p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        opacity: 0.8;
+      }
+
+      .achievement-card:hover p {
+        opacity: 1;
+      }
+
+      /* Quote Section */
+      .quote-section {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .quote-section::before {
+        content: '"';
+        font-size: 8rem;
+        position: absolute;
+        top: -2rem;
+        left: 2rem;
+        opacity: 0.2;
+        font-family: serif;
+      }
+
+      .quote-section p {
+        font-size: 1.3rem;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Footer */
+      footer {
+        background: #2c3e50;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 2rem;
+      }
+
+      footer p {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .stage-info {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .content-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .section h2 {
+          font-size: 1.5rem;
+        }
+
+        .timeline {
+          padding-left: 1rem;
+        }
+
+        .timeline-item {
+          padding: 1rem;
+          margin-left: 1rem;
+        }
+
+        .quote-section {
+          padding: 2rem 1rem;
+        }
+
+        .quote-section p {
+          font-size: 1.1rem;
+        }
+
+        .achievements {
+          grid-template-columns: 1fr;
+        }
+
+        .tooltip {
+          max-width: 280px;
+          left: 10px !important;
+          right: 10px;
+          width: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .info-card {
+          padding: 0.8rem 1.5rem;
+        }
+
+        .content-section {
+          padding: 1.5rem 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <section class="hero">
-        <div class="container">
-            <h1>Stage DevOps chez <span class="company-name">EarthDaily Agro</span></h1>
-            <div class="stage-info">
-                <div class="info-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <strong>4 mois</strong><br>
-                    Avril - Juillet 2025
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <strong>Toulouse</strong><br>
-                    Occitanie
-                </div>
-                <div class="info-card">
-                    <i class="fab fa-docker"></i>
-                    <strong>DevOps</strong><br>
-                    Microservices & Cloud
-                </div>
-            </div>
+      <div class="container">
+        <h1>
+          Stage DevOps chez <span class="company-name">EarthDaily Agro</span>
+        </h1>
+        <div class="stage-info">
+          <div class="info-card">
+            <i class="fas fa-calendar-alt"></i>
+            <strong>4 mois</strong><br />
+            Avril - Juillet 2025
+          </div>
+          <div class="info-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>Toulouse</strong><br />
+            Occitanie
+          </div>
+          <div class="info-card">
+            <i class="fab fa-docker"></i>
+            <strong>DevOps</strong><br />
+            Microservices & Cloud
+          </div>
         </div>
+      </div>
     </section>
 
     <div class="main-content">
-        <div class="content-section">
-            <div class="section">
-                <h2><i class="fas fa-satellite"></i>L'entreprise</h2>
-                <p>EarthDaily Agro est une entreprise spécialisée dans l'analyse de données agricoles issues de l'observation de la Terre par satellite. L'entreprise développe une chaîne de traitement d'images (IPC - Image Processing Chain) pour calibrer et analyser les données satellitaires au service de l'agriculture de précision.</p>
-                <div class="skills-container">
-                    <span class="skill-tag">Télédétection</span>
-                    <span class="skill-tag">Traitement d'Images</span>
-                    <span class="skill-tag">Agriculture de Précision</span>
-                    <span class="skill-tag">Données Satellitaires</span>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2><i class="fas fa-route"></i>Mon parcours de stage</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="phase">Phase 1 - Intégration</div>
-                        <h3>Découverte et prise en main</h3>
-                        <p>Découverte de l'équipe, des projets et du fonctionnement de l'entreprise. Participation aux réunions d'équipe et lecture de documentation technique. Apprentissage des méthodes de travail hybrides (Agile/Waterfall) avec dailys, sprints et sprint reviews.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="phase">Phase 2 - Analyse technique</div>
-                        <h3>Intégration des images dans la chaîne IPC</h3>
-                        <p>Analyse approfondie du code existant, debugging et manipulations SQL pour comprendre la structure des bases de données. Étude des relations entre tables et compréhension du fonctionnement des satellites et de la calibration des images.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="phase">Phase 3 - Migration</div>
-                        <h3>Migration des microservices hors VM</h3>
-                        <p>Recherches sur Docker et Kubernetes, tests de migration de services existants. Développement des premiers scripts Docker et exploration de GitLab CI/CD pour l'intégration continue. Étude des transferts entre Azure et Docker.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="phase">Phase 4 - Implémentation</div>
-                        <h3>Dockerisation et déploiement</h3>
-                        <p>Dockerisation réussie du premier microservice IPC. Installation et configuration de BlobFuse pour la communication entre Microsoft Azure et les microservices Docker. Construction d'un pipeline GitLab CI pour automatiser le build et le déploiement.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="phase">Phase 5 - Finalisation</div>
-                        <h3>Déploiement en production</h3>
-                        <p>Déploiement réussi de l'image Docker en production. Mise en place de l'intégration continue complète garantissant un processus automatisé de build et de déploiement pour l'ensemble du projet.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2><i class="fas fa-tools"></i>Technologies maîtrisées</h2>
-                <p>Cliquez sur une technologie pour en savoir plus sur son utilisation dans le projet :</p>
-                <div class="skills-container" id="skillsContainer">
-                    <span class="skill-tag devops" data-tech="docker">Docker</span>
-                    <span class="skill-tag devops" data-tech="kubernetes">Kubernetes</span>
-                    <span class="skill-tag devops" data-tech="gitlab">GitLab CI/CD</span>
-                    <span class="skill-tag cloud" data-tech="azure">Microsoft Azure</span>
-                    <span class="skill-tag cloud" data-tech="blobfuse">BlobFuse</span>
-                    <span class="skill-tag database" data-tech="sql">SQL</span>
-                    <span class="skill-tag" data-tech="microservices">Microservices</span>
-                    <span class="skill-tag" data-tech="imageprocessing">Image Processing</span>
-                </div>
-                
-                <!-- Tooltip -->
-                <div class="tooltip" id="tooltip">
-                    <button class="close-btn" onclick="closeTooltip()">&times;</button>
-                    <div id="tooltipContent"></div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2><i class="fas fa-trophy"></i>Réalisations clés</h2>
-                <div class="achievements">
-                    <div class="achievement-card">
-                        <i class="fab fa-docker"></i>
-                        <h3>Dockerisation</h3>
-                        <p>Migration réussie des microservices IPC vers Docker</p>
-                    </div>
-                    <div class="achievement-card">
-                        <i class="fas fa-cloud"></i>
-                        <h3>Intégration Cloud</h3>
-                        <p>Configuration BlobFuse pour Azure-Docker</p>
-                    </div>
-                    <div class="achievement-card">
-                        <i class="fas fa-cogs"></i>
-                        <h3>CI/CD</h3>
-                        <p>Pipeline GitLab automatisé</p>
-                    </div>
-                    <div class="achievement-card">
-                        <i class="fas fa-rocket"></i>
-                        <h3>Déploiement</h3>
-                        <p>Mise en production réussie</p>
-                    </div>
-                </div>
-            </div>
+      <div class="content-section">
+        <div class="section">
+          <h2><i class="fas fa-satellite"></i>L'entreprise</h2>
+          <p>
+            EarthDaily Agro est une entreprise spécialisée dans l'analyse de
+            données agricoles issues de l'observation de la Terre par satellite.
+            L'entreprise développe une chaîne de traitement d'images (IPC -
+            Image Processing Chain) pour calibrer et analyser les données
+            satellitaires au service de l'agriculture de précision.
+          </p>
+          <div class="skills-container">
+            <span class="skill-tag">Télédétection</span>
+            <span class="skill-tag">Traitement d'Images</span>
+            <span class="skill-tag">Agriculture de Précision</span>
+            <span class="skill-tag">Données Satellitaires</span>
+          </div>
         </div>
 
-        <div class="quote-section">
-            <p>Cette expérience m'a permis de découvrir concrètement les enjeux DevOps dans un contexte de traitement de données satellitaires, alliant innovation technologique et défis environnementaux.</p>
+        <div class="section">
+          <h2><i class="fas fa-route"></i>Mon parcours de stage</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="phase">Phase 1 - Intégration</div>
+              <h3>Découverte et prise en main</h3>
+              <p>
+                Découverte de l'équipe, des projets et du fonctionnement de
+                l'entreprise. Participation aux réunions d'équipe et lecture de
+                documentation technique. Apprentissage des méthodes de travail
+                hybrides (Agile/Waterfall) avec dailys, sprints et sprint
+                reviews.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="phase">Phase 2 - Analyse technique</div>
+              <h3>Intégration des images dans la chaîne IPC</h3>
+              <p>
+                Analyse approfondie du code existant, debugging et manipulations
+                SQL pour comprendre la structure des bases de données. Étude des
+                relations entre tables et compréhension du fonctionnement des
+                satellites et de la calibration des images.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="phase">Phase 3 - Migration</div>
+              <h3>Migration des microservices hors VM</h3>
+              <p>
+                Recherches sur Docker et Kubernetes, tests de migration de
+                services existants. Développement des premiers scripts Docker et
+                exploration de GitLab CI/CD pour l'intégration continue. Étude
+                des transferts entre Azure et Docker.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="phase">Phase 4 - Implémentation</div>
+              <h3>Dockerisation et déploiement</h3>
+              <p>
+                Dockerisation réussie du premier microservice IPC. Installation
+                et configuration de BlobFuse pour la communication entre
+                Microsoft Azure et les microservices Docker. Construction d'un
+                pipeline GitLab CI pour automatiser le build et le déploiement.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="phase">Phase 5 - Finalisation</div>
+              <h3>Déploiement en production</h3>
+              <p>
+                Déploiement réussi de l'image Docker en production. Mise en
+                place de l'intégration continue complète garantissant un
+                processus automatisé de build et de déploiement pour l'ensemble
+                du projet.
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div class="section">
+          <h2><i class="fas fa-tools"></i>Technologies maîtrisées</h2>
+          <p>
+            Cliquez sur une technologie pour en savoir plus sur son utilisation
+            dans le projet :
+          </p>
+          <div class="skills-container" id="skillsContainer">
+            <span class="skill-tag devops" data-tech="docker">Docker</span>
+            <span class="skill-tag devops" data-tech="kubernetes"
+              >Kubernetes</span
+            >
+            <span class="skill-tag devops" data-tech="gitlab"
+              >GitLab CI/CD</span
+            >
+            <span class="skill-tag cloud" data-tech="azure"
+              >Microsoft Azure</span
+            >
+            <span class="skill-tag cloud" data-tech="blobfuse">BlobFuse</span>
+            <span class="skill-tag database" data-tech="sql">SQL</span>
+            <span class="skill-tag" data-tech="microservices"
+              >Microservices</span
+            >
+            <span class="skill-tag" data-tech="imageprocessing"
+              >Image Processing</span
+            >
+          </div>
+
+          <!-- Tooltip -->
+          <div class="tooltip" id="tooltip">
+            <button class="close-btn" onclick="closeTooltip()">&times;</button>
+            <div id="tooltipContent"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="fas fa-trophy"></i>Réalisations clés</h2>
+          <div class="achievements">
+            <div class="achievement-card">
+              <i class="fab fa-docker"></i>
+              <h3>Dockerisation</h3>
+              <p>Migration réussie des microservices IPC vers Docker</p>
+            </div>
+            <div class="achievement-card">
+              <i class="fas fa-cloud"></i>
+              <h3>Intégration Cloud</h3>
+              <p>Configuration BlobFuse pour Azure-Docker</p>
+            </div>
+            <div class="achievement-card">
+              <i class="fas fa-cogs"></i>
+              <h3>CI/CD</h3>
+              <p>Pipeline GitLab automatisé</p>
+            </div>
+            <div class="achievement-card">
+              <i class="fas fa-rocket"></i>
+              <h3>Déploiement</h3>
+              <p>Mise en production réussie</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-section">
+        <p>
+          Cette expérience m'a permis de découvrir concrètement les enjeux
+          DevOps dans un contexte de traitement de données satellitaires,
+          alliant innovation technologique et défis environnementaux.
+        </p>
+      </div>
     </div>
 
     <footer>
-        <div class="container">
-            <p>© 2025 - Louis Roques | Stage de seconde année</p>
-        </div>
+      <div class="container">
+        <p>© 2025 - Louis Roques | Stage de seconde année</p>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <script>
+      // Données des technologies
+      const techData = {
+        docker: {
+          title: "Docker",
+          icon: "fab fa-docker",
+          description:
+            "Plateforme de conteneurisation qui permet d'empaqueter des applications avec leurs dépendances dans des conteneurs légers et portables.",
+          context:
+            "Utilisé pour migrer les microservices IPC hors des machines virtuelles, permettant une meilleure scalabilité et portabilité.",
+        },
+        kubernetes: {
+          title: "Kubernetes",
+          icon: "fas fa-dharmachakra",
+          description:
+            "Système d'orchestration de conteneurs open-source qui automatise le déploiement, la mise à l'échelle et la gestion des applications conteneurisées.",
+          context:
+            "Exploré pour l'orchestration des microservices dockerisés et la gestion automatisée des déploiements.",
+        },
+        gitlab: {
+          title: "GitLab CI/CD",
+          icon: "fab fa-gitlab",
+          description:
+            "Plateforme DevOps complète qui intègre la gestion de code source avec des pipelines d'intégration et de déploiement continus.",
+          context:
+            "Implémenté pour automatiser le processus de build et de déploiement, garantissant une intégration continue robuste.",
+        },
+        azure: {
+          title: "Microsoft Azure",
+          icon: "fab fa-microsoft",
+          description:
+            "Plateforme cloud de Microsoft offrant des services de calcul, stockage, réseau et intelligence artificielle.",
+          context:
+            "Utilisé comme plateforme de stockage des images satellitaires, nécessitant une intégration avec les microservices Docker.",
+        },
+        blobfuse: {
+          title: "BlobFuse",
+          icon: "fas fa-link",
+          description:
+            "Driver de système de fichiers virtuel pour Azure Blob Storage, permettant d'accéder aux données cloud comme à un système de fichiers local.",
+          context:
+            "Configuré pour établir la communication entre le stockage Azure et les microservices Docker, facilitant l'accès aux images.",
+        },
+        sql: {
+          title: "SQL",
+          icon: "fas fa-database",
+          description:
+            "Langage de requête structuré pour gérer et manipuler les bases de données relationnelles.",
+          context:
+            "Utilisé pour analyser la structure des bases de données, comprendre les relations entre tables et effectuer du debugging.",
+        },
+        microservices: {
+          title: "Architecture Microservices",
+          icon: "fas fa-cubes",
+          description:
+            "Approche architecturale qui structure une application comme un ensemble de services faiblement couplés et déployables indépendamment.",
+          context:
+            "Architecture utilisée pour la chaîne IPC, permettant une meilleure modularité et facilité de maintenance des services de traitement d'images.",
+        },
+        imageprocessing: {
+          title: "Traitement d'Images",
+          icon: "fas fa-image",
+          description:
+            "Ensemble de techniques pour analyser, modifier et extraire des informations à partir d'images numériques.",
+          context:
+            "Cœur métier d'EarthDaily Agro : calibration et analyse des images satellitaires pour l'agriculture de précision.",
+        },
+      };
+
+      // Gestion des tooltips
+      let currentTooltip = null;
+
+      function showTooltip(element, techKey) {
+        const tooltip = document.getElementById("tooltip");
+        const content = document.getElementById("tooltipContent");
+        const tech = techData[techKey];
+
+        if (!tech) return;
+
+        // Fermer le tooltip précédent
+        if (currentTooltip) {
+          currentTooltip.classList.remove("active");
+        }
+
+        // Contenu du tooltip
+        content.innerHTML = `
+                <h4><i class="${tech.icon}"></i>${tech.title}</h4>
+                <p>${tech.description}</p>
+                <div class="context">
+                        <strong>Dans mon stage :</strong><br>
+                        <span>${tech.context}</span>
+                </div>
+        `;
+
+        // Position du tooltip par rapport à l'élément cliqué
+        const rect = element.getBoundingClientRect();
+        const container = element.closest(".skills-container");
+        const containerRect = container.getBoundingClientRect();
+
+        // Calculer la position en tenant compte de l'espace disponible
+        let leftPos = rect.left - containerRect.left;
+        const topPos = rect.bottom - containerRect.top + 10;
+
+        // Ajuster si le tooltip dépasse à droite
+        if (leftPos + 320 > container.offsetWidth) {
+          leftPos = container.offsetWidth - 320 - 10;
+        }
+
+        // Ajuster si le tooltip dépasse à gauche
+        if (leftPos < 0) {
+          leftPos = 10;
+        }
+
+        tooltip.style.left = leftPos + "px";
+        tooltip.style.top = topPos + "px";
+
+        // Afficher le tooltip
+        tooltip.classList.add("show");
+        element.classList.add("active");
+        currentTooltip = element;
+      }
+
+      function closeTooltip() {
+        const tooltip = document.getElementById("tooltip");
+        tooltip.classList.remove("show");
+
+        if (currentTooltip) {
+          currentTooltip.classList.remove("active");
+          currentTooltip = null;
+        }
+      }
+
+      // Event listeners
+      document.addEventListener("DOMContentLoaded", () => {
+        const skillTags = document.querySelectorAll(".skill-tag[data-tech]");
+
+        skillTags.forEach((tag) => {
+          tag.addEventListener("click", function (e) {
+            e.stopPropagation();
+            const techKey = this.getAttribute("data-tech");
+
+            if (currentTooltip === this) {
+              closeTooltip();
+            } else {
+              showTooltip(this, techKey);
+            }
+          });
+        });
+
+        // Fermer le tooltip en cliquant ailleurs
+        document.addEventListener("click", (e) => {
+          if (
+            !e.target.closest(".tooltip") &&
+            !e.target.closest(".skill-tag")
+          ) {
+            closeTooltip();
+          }
+        });
+
+        // Fermer le tooltip avec Escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeTooltip();
+          }
+        });
+      });
+
+      // Animation au scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Effet de parallaxe léger
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        if (hero) {
+          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+    </script>
+  </body>
 </html>
